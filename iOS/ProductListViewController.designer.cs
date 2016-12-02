@@ -12,9 +12,15 @@ namespace AppleTableView.iOS
 	[Register ("ProductListViewController")]
 	partial class ProductListViewController
 	{
+		[Outlet]
+		UIKit.UITableView productTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (productTableView != null) {
+				productTableView.Dispose ();
+				productTableView = null;
+			}
 		}
 	}
 }

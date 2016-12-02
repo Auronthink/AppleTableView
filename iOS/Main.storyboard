@@ -43,7 +43,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="leftCell" id="9U4-p1-ZYG" userLabel="leftCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImgLeftViewCell" id="9U4-p1-ZYG" userLabel="leftCell" customClass="ImgLeftViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9U4-p1-ZYG" id="XgZ-yU-j6m">
@@ -119,8 +119,15 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Iyt-AN-6Cp" secondAttribute="trailing" constant="7" id="j5a-dv-UhO"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnBuy" destination="Iyt-AN-6Cp" id="Bq7-Fn-d9k"/>
+                                            <outlet property="btnInfo" destination="QOG-xh-wg8" id="0RT-99-Ods"/>
+                                            <outlet property="imgProduct" destination="sVi-Lr-jaM" id="Llh-W4-eU1"/>
+                                            <outlet property="lblName" destination="lfb-pf-RM0" id="zvX-i7-xal"/>
+                                            <outlet property="lblPrice" destination="MIg-kE-2sj" id="OYZ-c8-owR"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rightCell" id="tEI-Af-lay" userLabel="rightCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImgRightViewCell" id="tEI-Af-lay" userLabel="rightCell" customClass="ImgRightViewCell">
                                         <rect key="frame" x="0.0" y="168" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tEI-Af-lay" id="3lC-An-h3j">
@@ -196,6 +203,13 @@
                                                 <constraint firstItem="AI7-ld-xzn" firstAttribute="top" secondItem="3lC-An-h3j" secondAttribute="topMargin" constant="1" id="sJQ-pI-BQe"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnBuy" destination="26c-rf-MSf" id="oLY-k5-swD"/>
+                                            <outlet property="btnInfo" destination="aph-Ye-go0" id="A5p-H8-dTx"/>
+                                            <outlet property="imgProduct" destination="AI7-ld-xzn" id="zJx-O3-aLB"/>
+                                            <outlet property="lblName" destination="4vv-gM-hWk" id="Ke0-tV-iA6"/>
+                                            <outlet property="lblPrice" destination="WjK-rO-sif" id="nrV-HC-OfB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -204,6 +218,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="productTableView" destination="dhP-Q5-y7I" id="eCI-H7-rPW"/>
                         <segue destination="44o-AR-nX6" kind="show" id="KaE-wP-yWf"/>
                         <segue destination="UqP-OF-XEu" kind="show" id="WOE-cn-lkz"/>
                     </connections>

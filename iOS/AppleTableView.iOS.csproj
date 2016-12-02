@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="TableCell\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -129,6 +130,14 @@
     <Compile Include="OrderViewController.cs" />
     <Compile Include="OrderViewController.designer.cs">
       <DependentUpon>OrderViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableCell\ImgLeftViewCell.cs" />
+    <Compile Include="TableCell\ImgLeftViewCell.designer.cs">
+      <DependentUpon>ImgLeftViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableCell\ImgRightViewCell.cs" />
+    <Compile Include="TableCell\ImgRightViewCell.designer.cs">
+      <DependentUpon>ImgRightViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
