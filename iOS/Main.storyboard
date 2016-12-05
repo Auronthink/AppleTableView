@@ -254,6 +254,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="infoWebView" destination="zIQ-Bq-uK7" id="N63-QP-PgG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpL-Jn-mkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

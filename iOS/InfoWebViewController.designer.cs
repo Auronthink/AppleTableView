@@ -12,9 +12,15 @@ namespace AppleTableView.iOS
 	[Register ("InfoWebViewController")]
 	partial class InfoWebViewController
 	{
+		[Outlet]
+		UIKit.UIWebView infoWebView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (infoWebView != null) {
+				infoWebView.Dispose ();
+				infoWebView = null;
+			}
 		}
 	}
 }

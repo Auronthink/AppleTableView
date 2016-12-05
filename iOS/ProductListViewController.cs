@@ -9,7 +9,8 @@ namespace AppleTableView.iOS
 {
 	public partial class ProductListViewController : UIViewController
 	{
-		List<List<Product>> products;
+		private List<List<Product>> products;
+		private Product selectedProduct;
 
 		public ProductListViewController (IntPtr handle) : base (handle)
 		{
@@ -134,11 +135,30 @@ namespace AppleTableView.iOS
 		#region GoToNextView
 		void _selectInTableInfo(object sender, NSIndexPath e)
 		{
+			selectedProduct = products[e.Section][e.Row];
 			PerformSegue("GoToInfoWebView", this);
 		}
 		void _selectInTableBuy(object sender, NSIndexPath e)
 		{
+			selectedProduct = products[e.Section][e.Row];
 			PerformSegue("GoToOrderView", this);
+		}
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue(segue, sender);
+
+			if (segue.Identifier.Equals("GoToInfoWebView"))
+			{
+				var dvc = segue.DestinationViewController as InfoWebViewController;
+				dvc.product = selectedProduct;
+			}
+
+			if (segue.Identifier.Equals("GoToOrderView"))
+			{
+				var dvc = segue.DestinationViewController as OrderViewController;
+
+			}
 		}
 		#endregion
 	}
