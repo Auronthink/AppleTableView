@@ -9,7 +9,7 @@ namespace AppleTableView.iOS
 {
 	public partial class InfoWebViewController : UIViewController
 	{
-		public Product product;
+		public Product product { get; set;}
 
 		public InfoWebViewController (IntPtr handle) : base (handle)
 		{

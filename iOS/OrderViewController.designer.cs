@@ -12,9 +12,31 @@ namespace AppleTableView.iOS
 	[Register ("OrderViewController")]
 	partial class OrderViewController
 	{
+		[Outlet]
+		UIKit.UIImageView imgProduct { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblName { get; set; }
+
+		[Outlet]
+		UIKit.UILabel lblPrice { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (imgProduct != null) {
+				imgProduct.Dispose ();
+				imgProduct = null;
+			}
+
+			if (lblName != null) {
+				lblName.Dispose ();
+				lblName = null;
+			}
+
+			if (lblPrice != null) {
+				lblPrice.Dispose ();
+				lblPrice = null;
+			}
 		}
 	}
 }

@@ -9,8 +9,19 @@ namespace AppleTableView.iOS
 {
 	public partial class OrderViewController : UIViewController
 	{
+		public Product product { get; set;}
+
 		public OrderViewController (IntPtr handle) : base (handle)
 		{
+		}
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+
+			lblName.Text = product.Name;
+			lblPrice.Text = product.Price;
+			imgProduct.Image = UIImage.FromFile(product.Img);
 		}
 	}
 }

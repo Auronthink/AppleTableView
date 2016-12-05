@@ -157,7 +157,7 @@ namespace AppleTableView.iOS
 			if (segue.Identifier.Equals("GoToOrderView"))
 			{
 				var dvc = segue.DestinationViewController as OrderViewController;
-
+				dvc.product = selectedProduct;
 			}
 		}
 		#endregion

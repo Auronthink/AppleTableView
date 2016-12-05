@@ -421,6 +421,11 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="imgProduct" destination="jp2-Me-ZEh" id="qIx-hu-GUB"/>
+                        <outlet property="lblName" destination="5Jv-No-vme" id="JQb-NH-X88"/>
+                        <outlet property="lblPrice" destination="WuP-RC-mlN" id="7BH-jd-6vO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLx-sS-Cy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
