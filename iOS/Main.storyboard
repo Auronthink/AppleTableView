@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XUl-Ks-UaO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="E0T-D0-KFN" kind="show" id="9Jx-V6-fPL"/>
+                        <segue destination="E0T-D0-KFN" kind="relationship" relationship="rootViewController" id="Tpi-sB-YWd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVr-s8-Knr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,10 +217,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="lrB-hR-Xsg"/>
                     <connections>
                         <outlet property="productTableView" destination="dhP-Q5-y7I" id="eCI-H7-rPW"/>
-                        <segue destination="44o-AR-nX6" kind="show" id="KaE-wP-yWf"/>
-                        <segue destination="UqP-OF-XEu" kind="show" id="WOE-cn-lkz"/>
+                        <segue destination="44o-AR-nX6" kind="show" identifier="GoToInfoWebView" id="KaE-wP-yWf"/>
+                        <segue destination="UqP-OF-XEu" kind="show" identifier="GoToOrderView" id="WOE-cn-lkz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cip-35-vPE" userLabel="First Responder" sceneMemberID="firstResponder"/>

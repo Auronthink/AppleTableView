@@ -103,6 +103,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="TableCell\" />
+    <Folder Include="TableSource\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -139,6 +140,20 @@
     <Compile Include="TableCell\ImgRightViewCell.designer.cs">
       <DependentUpon>ImgRightViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableSource\TableSource.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ipad.jpg" />
+    <BundleResource Include="Resources\ipadAir.jpg" />
+    <BundleResource Include="Resources\ipadMini.jpg" />
+    <BundleResource Include="Resources\iphone.jpg" />
+    <BundleResource Include="Resources\iphone6.png" />
+    <BundleResource Include="Resources\iphoneSE.jpg" />
+    <BundleResource Include="Resources\iWatch.jpg" />
+    <BundleResource Include="Resources\Mac.png" />
+    <BundleResource Include="Resources\macbook.jpg" />
+    <BundleResource Include="Resources\macbookAir.png" />
+    <BundleResource Include="Resources\macbookPro.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

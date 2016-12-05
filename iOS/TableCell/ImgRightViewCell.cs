@@ -9,8 +9,56 @@ namespace AppleTableView.iOS
 {
 	public partial class ImgRightViewCell : UITableViewCell
 	{
+		public string url { get; set; }
+		public NSIndexPath indexPath { get; set; }
+
+		private event EventHandler<NSIndexPath> InfoClick;
+		private event EventHandler<NSIndexPath> BuyClick;
+
 		public ImgRightViewCell (IntPtr handle) : base (handle)
 		{
 		}
+
+		public void updateUI(Product product)
+		{
+			this.url 			= product.URL;
+			lblName.Text 		= product.Name;
+			lblPrice.Text 		= product.Price;
+			imgProduct.Image	= UIImage.FromFile(product.Img);
+		}
+
+		#region Cell Event
+		public void setInfoEvent(EventHandler<NSIndexPath> _clickEvent)
+		{
+			InfoClick = _clickEvent;
+
+			btnInfo.TouchUpInside -= clickInfoEvent;
+			btnInfo.TouchUpInside += clickInfoEvent;
+		}
+
+		public void clickInfoEvent(object sender, EventArgs e)
+		{
+			if (InfoClick != null)
+			{
+				InfoClick(sender, this.indexPath);	
+			}
+		}
+
+		public void setBuyEvent(EventHandler<NSIndexPath> _clickEvent)
+		{
+			BuyClick = _clickEvent;
+
+			btnBuy.TouchUpInside -= clickBuyEvent;
+			btnBuy.TouchUpInside += clickBuyEvent;
+		}
+
+		public void clickBuyEvent(object sender, EventArgs e)
+		{
+			if (BuyClick != null)
+			{
+				BuyClick(sender, this.indexPath);
+			}
+		}
+		#endregion
 	}
 }
