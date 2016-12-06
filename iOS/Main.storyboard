@@ -425,6 +425,10 @@
                         <outlet property="imgProduct" destination="jp2-Me-ZEh" id="qIx-hu-GUB"/>
                         <outlet property="lblName" destination="5Jv-No-vme" id="JQb-NH-X88"/>
                         <outlet property="lblPrice" destination="WuP-RC-mlN" id="7BH-jd-6vO"/>
+                        <outlet property="lblTotalPrice" destination="irs-tm-xmE" id="dbs-Gh-nzD"/>
+                        <outlet property="txtAddress" destination="Wx8-bM-r2N" id="paI-CZ-xcH"/>
+                        <outlet property="txtAmount" destination="rFC-3V-tWJ" id="ZsD-1C-Zuu"/>
+                        <outlet property="txtDate" destination="gSn-ZA-4Uw" id="d5g-lC-C4p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLx-sS-Cy6" userLabel="First Responder" sceneMemberID="firstResponder"/>

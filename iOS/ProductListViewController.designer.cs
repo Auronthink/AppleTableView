@@ -1,26 +1,28 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Xamarin Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace AppleTableView.iOS
 {
-	[Register ("ProductListViewController")]
-	partial class ProductListViewController
-	{
-		[Outlet]
-		UIKit.UITableView productTableView { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (productTableView != null) {
-				productTableView.Dispose ();
-				productTableView = null;
-			}
-		}
-	}
+    [Register ("ProductListViewController")]
+    partial class ProductListViewController
+    {
+        [Outlet]
+        UIKit.UITableView productTableView { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (productTableView != null) {
+                productTableView.Dispose ();
+                productTableView = null;
+            }
+        }
+    }
 }

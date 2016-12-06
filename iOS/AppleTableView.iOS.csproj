@@ -104,10 +104,12 @@
     <Folder Include="Resources\" />
     <Folder Include="TableCell\" />
     <Folder Include="TableSource\" />
+    <Folder Include="Picker\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Picker\PickerToolbarView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -141,6 +143,14 @@
       <DependentUpon>ImgRightViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="TableSource\TableSource.cs" />
+    <Compile Include="Picker\MyDatePicker.cs" />
+    <Compile Include="Picker\PickerToolbarView.cs" />
+    <Compile Include="Picker\PickerToolbarView.designer.cs">
+      <DependentUpon>PickerToolbarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Picker\AmountPickerModel.cs" />
+    <Compile Include="Picker\AddressPickerModel.cs" />
+    <Compile Include="Picker\MyPickerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ipad.jpg" />
