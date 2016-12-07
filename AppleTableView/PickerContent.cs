@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 namespace AppleTableView
 {
-	public class AddressData
+	public class PickerContent
 	{
-		public AddressData()
+		public PickerContent()
 		{
 		}
 

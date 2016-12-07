@@ -9,10 +9,10 @@ namespace AppleTableView.iOS
 {
 	public class MyPickerModel : UIPickerViewModel
 	{
-		#region Address Data Base
-		List<AddressData> addressData = new List<AddressData>()
+		#region Data Base
+		List<PickerContent> addressData = new List<PickerContent>()
 		{
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 0,
 				componentPath = new List<int>()
@@ -21,7 +21,7 @@ namespace AppleTableView.iOS
 				},
 				title = "台北市"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 0,
 				componentPath = new List<int>()
@@ -30,7 +30,7 @@ namespace AppleTableView.iOS
 				},
 				title = "新北市"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -39,7 +39,7 @@ namespace AppleTableView.iOS
 				},
 				title = "信義區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -48,7 +48,7 @@ namespace AppleTableView.iOS
 				},
 				title = "中山區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -57,7 +57,7 @@ namespace AppleTableView.iOS
 				},
 				title = "大同區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -66,7 +66,7 @@ namespace AppleTableView.iOS
 				},
 				title = "新店區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -75,7 +75,7 @@ namespace AppleTableView.iOS
 				},
 				title = "文山區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 1,
 				componentPath = new List<int>()
@@ -84,7 +84,7 @@ namespace AppleTableView.iOS
 				},
 				title = "烏來區"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -93,7 +93,7 @@ namespace AppleTableView.iOS
 				},
 				title = "信義路"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -102,7 +102,7 @@ namespace AppleTableView.iOS
 				},
 				title = "忠孝東路"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -111,7 +111,7 @@ namespace AppleTableView.iOS
 				},
 				title = "敦化北路"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -120,7 +120,7 @@ namespace AppleTableView.iOS
 				},
 				title = "中正路"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -129,7 +129,7 @@ namespace AppleTableView.iOS
 				},
 				title = "北新路"
 			},
-			new AddressData()
+			new PickerContent()
 			{
 				componentIndex = 2,
 				componentPath = new List<int>()
@@ -137,13 +137,22 @@ namespace AppleTableView.iOS
 					1, 0, 2
 				},
 				title = "民權路"
+			},
+			new PickerContent()
+			{
+				componentIndex = 3,
+				componentPath = new List<int>()
+				{
+					0, 0, 0, 0
+				},
+				title = "東區"
 			}
 		};
 		#endregion
 
 		private int componentCount;
 		private List<int> selectedRow = new List<int>();
-		public List<int> cancelSelectedRow = new List<int>();
+		public  List<int> originalSelectedRow = new List<int>();
 
 		public MyPickerModel(int _comonentCount)
 		{
@@ -152,7 +161,7 @@ namespace AppleTableView.iOS
 			for (int i = 0; i < this.componentCount; i++)
 			{
 				this.selectedRow.Add(0);
-				this.cancelSelectedRow.Add(0);
+				this.originalSelectedRow.Add(0);
 			}
 		}
 
@@ -163,65 +172,37 @@ namespace AppleTableView.iOS
 
 		public override nint GetRowsInComponent(UIPickerView pickerView, nint component)
 		{
-			if (component == 0)
-			{
-				var rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
-				return rowsCount.Count();
-			} else {
-				var rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
-				for (int i = 0; i < (int)component; i++)
-				{
-					rowsCount = rowsCount.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
+			List<PickerContent> rowsCount = new List<PickerContent>();
 
-					if (i+1 >= (int)component)
-					{
-						break;
-					}
-				}
-				return rowsCount.Count();
+			// 取出屬於該Component層級的Data
+			rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
+			// 依照ComponentPath層級相依抓Data
+			for (int i = 0; i < component; i++)
+			{
+				rowsCount = rowsCount.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
 			}
+			return rowsCount.Count;
 		}
 
 		public override string GetTitle(UIPickerView pickerView, nint row, nint component)
 		{
-			int i = 0;
-			List<AddressData> tmp;
+			List<PickerContent> selectAddressData = new List<PickerContent>();
 
-			if (component == 0)
+			// 取出屬於該Component層級的Data
+			selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
+			// 依照ComponentPath層級相依抓Data
+			for (int i = 0; i < component; i++)
 			{
-				var selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
-				selectAddressData.OrderBy(val => val.componentPath[0]);
+				selectAddressData = selectAddressData.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
+			}
+			// 依照自身層級的rowIndex排序
+			selectAddressData = selectAddressData.OrderBy(val => val.componentPath[(int)component]).ToList();
 
-				tmp = selectAddressData.ToList();
-				return tmp[(int)row].title;
+			if (selectAddressData.Count != 0)
+			{
+				return selectAddressData[(int)row].title;
 			} else {
-				var selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
-
-				Console.WriteLine("Component : " + component);
-
-				for (i = 0; i < (int)component; i++)
-				{
-					selectAddressData = selectAddressData.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
-
-					Console.WriteLine("i : " + i);
-					Console.WriteLine("selectedRow[i] : " + selectedRow[i]);
-
-
-					if (i + 1 >= (int)component)
-					{
-						break;
-					}
-				}
-				selectAddressData = selectAddressData.OrderBy(val => val.componentPath[i]).ToList();
-
-				tmp = selectAddressData.ToList();
-				if (tmp.Count != 0)
-				{
-					return tmp[(int)row].title;
-				} else {
-					return string.Empty;
-				}
-
+				return string.Empty;
 			}
 		}
 
@@ -241,16 +222,30 @@ namespace AppleTableView.iOS
 			}
 		}
 
-		//public string selectAddr(UIPickerView pickerView)
-		//{
-		//	for (int i = 0; i < cancelSelectedRow.Count; i++)
-		//	{
-		//		cancelSelectedRow[i] = pickerView.SelectedRowInComponent(i);
-		//	}
+		public List<string> pickerSelectDone(UIPickerView pickerView)
+		{
+			List<string> selectedDataList = new List<string>();
+			// update CancelSelectedRow & set selected Data List
+			for (int i = 0; i < pickerView.NumberOfComponents; i++)
+			{
+				originalSelectedRow[i] = (int)pickerView.SelectedRowInComponent(i);
 
-		//	return cityList[(int)pickerView.SelectedRowInComponent(0)]
-		//			+ " "
-		//			+ areaList[(int)pickerView.SelectedRowInComponent(0)][(int)pickerView.SelectedRowInComponent(1)];
-		//}
+				selectedDataList.Add(this.GetTitle(pickerView, pickerView.SelectedRowInComponent(i), i));
+			}
+			return selectedDataList;
+		}
+
+		public void pickerSelectCancel(UIPickerView pickerView)
+		{
+			for (int i = 0; i < pickerView.NumberOfComponents; i++)
+			{
+				pickerView.Select(this.originalSelectedRow[i], i, false);
+				if (i < pickerView.NumberOfComponents-1)
+				{
+					// 觸發selected去reload component
+					this.Selected(pickerView, this.originalSelectedRow[i], i);
+				}
+			}
+		}
 	}
 }

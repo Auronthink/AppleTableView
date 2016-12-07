@@ -145,7 +145,7 @@ namespace AppleTableView.iOS
 
 			#region Address Picker
 			//addrModel = new AddressPickerModel(cityList, areaList);
-			addrModel = new MyPickerModel(3);
+			addrModel = new MyPickerModel(4);
 
 			addrPicker = new UIPickerView();
 			addrPicker.BackgroundColor = UIColor.White;
@@ -155,8 +155,8 @@ namespace AppleTableView.iOS
 
 			txtAddress.InputView = addrPicker;
 			txtAddress.InputAccessoryView = addrToolbar;
-			//addrToolbar.DoneEvent += _addrDone;
-			//addrToolbar.CancelEvent += _addrCancel;
+			addrToolbar.DoneEvent += _addrDone;
+			addrToolbar.CancelEvent += _addrCancel;
 			#endregion
 		}
 
@@ -181,25 +181,21 @@ namespace AppleTableView.iOS
 			}
 		}
 
-		//void _addrDone(object sender, EventArgs e)
-		//{
-		//	txtAddress.Text = addrModel.selectAddr(addrPicker);
-
-		//	txtAddress.ResignFirstResponder();
-		//}
-		//void _addrCancel(object sender, EventArgs e)
-		//{
-		//	txtAddress.ResignFirstResponder();
-		//	for (int i = 0; i < addrModel.cancelSelectedRow.Count; i++)
-		//	{
-		//		addrPicker.Select(addrModel.cancelSelectedRow[i], i, false);
-		//		if (i == 0)
-		//		{
-		//			// 觸發selected去reload component
-		//			addrModel.Selected(addrPicker, addrModel.cancelSelectedRow[i], i);
-		//		}
-		//	}
-		//}
+		void _addrDone(object sender, EventArgs e)
+		{
+			txtAddress.Text = "";
+			// combine title list and set txtAddress.Text
+			foreach (var title in addrModel.pickerSelectDone(addrPicker))
+			{
+				txtAddress.Text += title;
+			}
+			txtAddress.ResignFirstResponder();
+		}
+		void _addrCancel(object sender, EventArgs e)
+		{
+			txtAddress.ResignFirstResponder();
+			addrModel.pickerSelectCancel(addrPicker);
+		}
 
 		void _dateDone(object sender, EventArgs e)
 		{
