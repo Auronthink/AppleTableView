@@ -83,6 +83,60 @@ namespace AppleTableView.iOS
 					1, 2
 				},
 				title = "烏來區"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					0, 0, 0
+				},
+				title = "信義路"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					0, 0, 1
+				},
+				title = "忠孝東路"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					0, 0, 2
+				},
+				title = "敦化北路"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					1, 0, 0
+				},
+				title = "中正路"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					1, 0, 1
+				},
+				title = "北新路"
+			},
+			new AddressData()
+			{
+				componentIndex = 2,
+				componentPath = new List<int>()
+				{
+					1, 0, 2
+				},
+				title = "民權路"
 			}
 		};
 		#endregion
@@ -111,17 +165,21 @@ namespace AppleTableView.iOS
 		{
 			if (component == 0)
 			{
-				var rowsCount = addressData.Where(val => val.componentIndex == component);
+				var rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
 				return rowsCount.Count();
 			} else {
-				var rowsCount = addressData.Where(val => val.componentIndex == component);
+				var rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
 				for (int i = 0; i < (int)component; i++)
 				{
-					rowsCount = rowsCount.Where(val => val.componentPath[0].Equals(0));
+					rowsCount = rowsCount.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
+
+					if (i+1 >= (int)component)
+					{
+						break;
+					}
 				}
 				return rowsCount.Count();
 			}
-
 		}
 
 		public override string GetTitle(UIPickerView pickerView, nint row, nint component)
@@ -131,23 +189,39 @@ namespace AppleTableView.iOS
 
 			if (component == 0)
 			{
-				var selectAddressData = addressData.Where(val => val.componentIndex == component);
+				var selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
 				selectAddressData.OrderBy(val => val.componentPath[0]);
 
 				tmp = selectAddressData.ToList();
 				return tmp[(int)row].title;
 			} else {
-				var selectAddressData = addressData.Where(val => val.componentIndex == component);
+				var selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
+
+				Console.WriteLine("Component : " + component);
 
 				for (i = 0; i < (int)component; i++)
 				{
-					selectAddressData = selectAddressData.Where(val => val.componentPath[0].Equals(selectedRow[0]));
+					selectAddressData = selectAddressData.Where(val => val.componentPath[i].Equals(selectedRow[i])).ToList();
+
+					Console.WriteLine("i : " + i);
+					Console.WriteLine("selectedRow[i] : " + selectedRow[i]);
+
+
+					if (i + 1 >= (int)component)
+					{
+						break;
+					}
 				}
-				selectAddressData = selectAddressData.OrderBy(val => val.componentPath[i]);
+				selectAddressData = selectAddressData.OrderBy(val => val.componentPath[i]).ToList();
 
 				tmp = selectAddressData.ToList();
+				if (tmp.Count != 0)
+				{
+					return tmp[(int)row].title;
+				} else {
+					return string.Empty;
+				}
 
-				return tmp[(int)row].title;
 			}
 		}
 
@@ -160,8 +234,8 @@ namespace AppleTableView.iOS
 				selectedRow[(int)component] = (int)pickerView.SelectedRowInComponent(component);
 				for (int i = (int)component; i < componentCount-1; i++)
 				{
-					pickerView.ReloadComponent(i+1);
-					pickerView.Select(0, i+1, true);
+					pickerView.ReloadComponent(i + 1);
+					pickerView.Select(0, i + 1, true);
 					selectedRow[i + 1] = 0;
 				}
 			}

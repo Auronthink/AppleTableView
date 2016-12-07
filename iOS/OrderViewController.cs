@@ -145,7 +145,7 @@ namespace AppleTableView.iOS
 
 			#region Address Picker
 			//addrModel = new AddressPickerModel(cityList, areaList);
-			addrModel = new MyPickerModel(2);
+			addrModel = new MyPickerModel(3);
 
 			addrPicker = new UIPickerView();
 			addrPicker.BackgroundColor = UIColor.White;
