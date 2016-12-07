@@ -9,154 +9,16 @@ namespace AppleTableView.iOS
 {
 	public class MyPickerModel : UIPickerViewModel
 	{
-		#region Data Base
-		List<PickerContent> addressData = new List<PickerContent>()
-		{
-			new PickerContent()
-			{
-				componentIndex = 0,
-				componentPath = new List<int>()
-				{
-					0
-				},
-				title = "台北市"
-			},
-			new PickerContent()
-			{
-				componentIndex = 0,
-				componentPath = new List<int>()
-				{
-					1
-				},
-				title = "新北市"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					0, 0
-				},
-				title = "信義區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					0, 1
-				},
-				title = "中山區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					0, 2
-				},
-				title = "大同區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					1, 0
-				},
-				title = "新店區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					1, 1
-				},
-				title = "文山區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 1,
-				componentPath = new List<int>()
-				{
-					1, 2
-				},
-				title = "烏來區"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					0, 0, 0
-				},
-				title = "信義路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					0, 0, 1
-				},
-				title = "忠孝東路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					0, 0, 2
-				},
-				title = "敦化北路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					1, 0, 0
-				},
-				title = "中正路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					1, 0, 1
-				},
-				title = "北新路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 2,
-				componentPath = new List<int>()
-				{
-					1, 0, 2
-				},
-				title = "民權路"
-			},
-			new PickerContent()
-			{
-				componentIndex = 3,
-				componentPath = new List<int>()
-				{
-					0, 0, 0, 0
-				},
-				title = "東區"
-			}
-		};
-		#endregion
 
 		private int componentCount;
+		private List<PickerContent> PickerContentList;
 		private List<int> selectedRow = new List<int>();
 		public  List<int> originalSelectedRow = new List<int>();
 
-		public MyPickerModel(int _comonentCount)
+		public MyPickerModel(int _comonentCount, List<PickerContent> _pickerContentList)
 		{
-			this.componentCount = _comonentCount;
+			this.componentCount		= _comonentCount;
+			this.PickerContentList  = _pickerContentList;
 
 			for (int i = 0; i < this.componentCount; i++)
 			{
@@ -175,7 +37,7 @@ namespace AppleTableView.iOS
 			List<PickerContent> rowsCount = new List<PickerContent>();
 
 			// 取出屬於該Component層級的Data
-			rowsCount = addressData.Where(val => val.componentIndex == component).ToList();
+			rowsCount = PickerContentList.Where(val => val.componentIndex == component).ToList();
 			// 依照ComponentPath層級相依抓Data
 			for (int i = 0; i < component; i++)
 			{
@@ -189,7 +51,7 @@ namespace AppleTableView.iOS
 			List<PickerContent> selectAddressData = new List<PickerContent>();
 
 			// 取出屬於該Component層級的Data
-			selectAddressData = addressData.Where(val => val.componentIndex == component).ToList();
+			selectAddressData = PickerContentList.Where(val => val.componentIndex == component).ToList();
 			// 依照ComponentPath層級相依抓Data
 			for (int i = 0; i < component; i++)
 			{

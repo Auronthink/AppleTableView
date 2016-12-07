@@ -16,95 +16,182 @@ namespace AppleTableView.iOS
 		private PickerToolbarView dateToolbar;
 
 		private UIPickerView amountPicker;
-		private AmountPickerModel amountModel;
+		private MyPickerModel amountModel;
 		private PickerToolbarView amountToolbar;
 
-		UIPickerView addrPicker;
-		//AddressPickerModel addrModel;
-		MyPickerModel addrModel;
-		PickerToolbarView addrToolbar;
+		private UIPickerView addrPicker;
+		private MyPickerModel addrModel;
+		private PickerToolbarView addrToolbar;
 
-		#region AmountPicker Data
-		private List<string> _items = Enumerable.Range(1, 100).Select(n => n.ToString()).ToList();
+		#region Amount Data Base
+		private List<PickerContent> AmountContent;
 		#endregion
 
-		#region Address Picker Data
-		List<string> cityList = new List<string>()
-			{
-				"臺北市",
-				"新北市",
-				"桃園市",
-				"臺中市",
-				"臺南市",
-				"高雄市"
-			};
-
-		List<List<string>> areaList = new List<List<string>>
-			{
-				new List<string>{
-					"中正區",
-					"大同區",
-					"中山區",
-					"松山區",
-					"大安區",
-					"萬華區",
-					"信義區",
-					"士林區",
-					"北投區",
-					"內湖區",
-					"南港區",
-					"文山區"
-				},
-				new List<string>{
-					"板橋區",
-					"新莊區",
-					"中和區",
-					"永和區",
-					"土城區",
-					"樹林區",
-					"三峽區",
-					"鶯歌區",
-					"三重區",
-					"蘆洲區",
-					"五股區",
-					"泰山區"
-				},
-				new List<string>{
-					"桃園區",
-					"中壢區",
-					"平鎮區",
-					"八德區",
-					"楊梅區"
-				},
-				new List<string>{
-					"北屯區",
-					"西屯區",
-					"南屯區",
-					"太平區",
-					"大里區",
-					"霧峰區"
-				},
-				new List<string>{
-					"麻豆區",
-					"佳里區",
-					"西港區",
-					"七股區",
-					"將軍區",
-					"學甲區"
-				},
-				new List<string>{
-					"左營區",
-					"鼓山區",
-					"三民區",
-					"鹽埕區",
-					"前金區",
-					"新興區"
-				}
-			};
+		#region Address Data Base
+		private List<PickerContent> AddressContent;
 		#endregion
 
 		public OrderViewController (IntPtr handle) : base (handle)
 		{
+			#region Picker Amount Data Set
+			AmountContent = new List<PickerContent>();
+
+			for (int i = 1; i < 50; i++)
+			{
+				//data.componentPath[0] = i;
+				//data.title = i.ToString();
+				AmountContent.Add(new PickerContent()
+				{
+					componentIndex = 0,
+					componentPath = new List<int>()
+					{
+						i
+					},
+					title = i.ToString()
+				});
+			}
+			#endregion
+
+			#region Picker Address Data Set
+			AddressContent = new List<PickerContent>()
+			{
+				new PickerContent()
+				{
+					componentIndex = 0,
+					componentPath = new List<int>()
+					{
+						0
+					},
+					title = "台北市"
+				},
+				new PickerContent()
+				{
+					componentIndex = 0,
+					componentPath = new List<int>()
+					{
+						1
+					},
+					title = "新北市"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						0, 0
+					},
+					title = "信義區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						0, 1
+					},
+					title = "中山區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						0, 2
+					},
+					title = "大同區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						1, 0
+					},
+					title = "新店區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						1, 1
+					},
+					title = "文山區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 1,
+					componentPath = new List<int>()
+					{
+						1, 2
+					},
+					title = "烏來區"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						0, 0, 0
+					},
+					title = "信義路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						0, 0, 1
+					},
+					title = "忠孝東路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						0, 0, 2
+					},
+					title = "敦化北路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						1, 0, 0
+					},
+					title = "中正路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						1, 0, 1
+					},
+					title = "北新路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 2,
+					componentPath = new List<int>()
+					{
+						1, 0, 2
+					},
+					title = "民權路"
+				},
+				new PickerContent()
+				{
+					componentIndex = 3,
+					componentPath = new List<int>()
+					{
+						0, 0, 0, 0
+					},
+					title = "東區"
+				}
+			};
+			#endregion
 		}
 
 		public override void ViewDidLoad()
@@ -129,7 +216,7 @@ namespace AppleTableView.iOS
 			#endregion
 
 			#region Amount Picker
-			amountModel = new AmountPickerModel(_items);
+			amountModel = new MyPickerModel(1, AmountContent);
 
 			amountPicker = new UIPickerView();
 			amountPicker.BackgroundColor = UIColor.White;
@@ -139,13 +226,12 @@ namespace AppleTableView.iOS
 
 			txtAmount.InputView = amountPicker;
 			txtAmount.InputAccessoryView = amountToolbar;
-			amountToolbar.DoneEvent += _numDone;
-			amountToolbar.CancelEvent += _numCancel;
+			amountToolbar.DoneEvent += _amountDone;
+			amountToolbar.CancelEvent += _amountCancel;
 			#endregion
 
 			#region Address Picker
-			//addrModel = new AddressPickerModel(cityList, areaList);
-			addrModel = new MyPickerModel(4);
+			addrModel = new MyPickerModel(4, AddressContent);
 
 			addrPicker = new UIPickerView();
 			addrPicker.BackgroundColor = UIColor.White;
@@ -161,30 +247,24 @@ namespace AppleTableView.iOS
 		}
 
 		#region Toolbar's Event
-		void _numDone(object sender, EventArgs e)
+		void _amountDone(object sender, EventArgs e)
 		{
-			txtAmount.Text = amountModel.selectItem(amountPicker);
-			int totalPrice = 0;
-			if (txtAmount.Text != "")
+			txtAmount.Text = "";
+			foreach (var title in amountModel.pickerSelectDone(amountPicker))
 			{
-				totalPrice = Int32.Parse(txtAmount.Text) * Int32.Parse(lblPrice.Text);
-				lblTotalPrice.Text = "$ " + totalPrice.ToString();
+				txtAmount.Text += title;
 			}
 			txtAmount.ResignFirstResponder();
 		}
-		void _numCancel(object sender, EventArgs e)
+		void _amountCancel(object sender, EventArgs e)
 		{
 			txtAmount.ResignFirstResponder();
-			for (int i = 0; i < amountModel.cancelSelectedRow.Count; i++)
-			{
-				amountPicker.Select(amountModel.cancelSelectedRow[i], i, false);
-			}
+			amountModel.pickerSelectCancel(amountPicker);
 		}
 
 		void _addrDone(object sender, EventArgs e)
 		{
 			txtAddress.Text = "";
-			// combine title list and set txtAddress.Text
 			foreach (var title in addrModel.pickerSelectDone(addrPicker))
 			{
 				txtAddress.Text += title;
